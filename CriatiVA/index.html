@@ -20,8 +20,20 @@
         let player = new Image();
         player.src = "assets/imgs/plyr1.png";
 
+        var plr_x = 0;
+
+        setInterval("gameLoop()", 16);
+
         function desenhar() {
-            ctx.drawImage(player, 15, 120, 50, 50);
+            ctx.clearRect(0, 0, area_Jogo.width, area_Jogo.height);
+            ctx.drawImage(player, plr_x, 120, 50, 50);
+        }
+        function movimento() {
+            plr_x++;
+        }
+        function gameLoop() {
+            desenhar();
+            movimento();
         }
 
     </script>
