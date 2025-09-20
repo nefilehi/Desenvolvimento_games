@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <canvas id="areaJogo"></canvas>
+    <title>Document</title>
+</head>
+
+<body onload="desenhar()">
+    <script>
+
+        let area_Jogo = document.getElementById("areaJogo");
+        let ctx = area_Jogo.getContext("2d");
+
+        area_Jogo.width = window.innerWidth;
+        area_Jogo.height = window.innerHeight;
+
+        let player = new Image();
+        player.src = "assets/imgs/plyr1.png";
+
+        function desenhar() {
+            ctx.drawImage(player, 15, 120, 50, 50);
+        }
+
+    </script>
+</body>
+
+</html>
