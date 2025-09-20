@@ -18,8 +18,3 @@ O objetivo é registrar minha evolução, explorar diferentes conceitos e aplica
 - Criar uma base para futuros projetos mais complexos  
 
 ---
-
-## ⚙️ Como usar
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/SEU-USUARIO/NOME-DO-REPOSITORIO.git
