@@ -21,6 +21,27 @@
         player.src = "assets/imgs/plyr1.png";
 
         var plr_x = 0;
+        var plr_y = 250;
+        var plr_larg = 50;
+        var plr_alt = 70;
+
+        var veloc = 1;
+        var velocY = 1;
+        var gravid = 0.7;
+        var noChao = true;
+
+        var keys = {}; //Array para guardar as teclas pressionadas
+
+        document.addEventListener("keydown", (e) => {
+            keys[e.code] = true;
+        }
+
+        );
+        document.addEventListener("keyup", (e) => {
+            keys[e.code] = false;
+        }
+
+        );
 
         setInterval("gameLoop()", 16);
 
@@ -29,7 +50,13 @@
             ctx.drawImage(player, plr_x, 120, 50, 50);
         }
         function movimento() {
-            plr_x++;
+            if (keys["KeyA"]) {
+                plr_x -= veloc
+            }
+            if (keys["KeyD"]) {
+                plr_x += veloc
+            }
+
         }
         function gameLoop() {
             desenhar();
