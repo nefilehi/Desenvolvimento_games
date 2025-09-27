@@ -29,10 +29,34 @@
         let piso = new Image();
         piso.src = "assets/imgs/piso.png";
 
-        var plr_x = 0;
-        var plr_y = 250;
-        var plr_larg = 50;
-        var plr_alt = 70;
+        let plrProps = {
+            x: area_Jogo.width * 0.10,
+            y: area_Jogo.height * 0.70,
+            larg: area_Jogo.width * 0.10,
+            alt: area_Jogo.height * 0.25
+        };
+
+        let pisoProps = {
+            x: 0,
+            y: area_Jogo.height * 0.80,
+            larg: area_Jogo.width,
+            alt: area_Jogo.height * 0.20
+        };
+
+        let selvaProps = {
+            x: 0,
+            y: 0,
+            larg: area_Jogo.width,
+            alt: area_Jogo.height
+        };
+
+        let fundoProps = {
+            x: 0,
+            y: 0,
+            larg: area_Jogo.width,
+            alt: area_Jogo.height
+        };
+
 
         var veloc = 1;
         var velocY = 1;
@@ -56,14 +80,20 @@
 
         function desenhar() {
             ctx.clearRect(0, 0, area_Jogo.width, area_Jogo.height);
-            ctx.drawImage(player, plr_x, 120, 50, 50);
+            ctx.drawImage(fundo, fundoProps.x, fundoProps.y,
+                fundoProps.larg, fundoProps.alt);
+            ctx.drawImage(selva, selvaProps.x, selvaProps.y,
+                selvaProps.larg, selvaProps.alt);
+            ctx.drawImage(piso, pisoProps.x, pisoProps.y, pisoProps.larg, pisoProps.alt);
+            ctx.drawImage(player, plrProps.x, plrProps.y,
+                plrProps.larg, plrProps.alt);
         }
         function movimento() {
             if (keys["KeyA"]) {
-                plr_x -= veloc
+                plrProps.x -= veloc
             }
             if (keys["KeyD"]) {
-                plr_x += veloc
+                plrProps.x += veloc
             }
 
         }
