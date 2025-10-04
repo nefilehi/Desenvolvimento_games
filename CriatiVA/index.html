@@ -56,18 +56,18 @@
             alt: area_jogo.height
         };
 
-        const tilesize = 48;
+        const tilesize = 84;
 
-        let tilemap = (
+        let tilemap = [
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 2, 0, 0, 2, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-        );
+        ];
 
-        var veloc = 25;
+        var veloc = 7;
         var velocY = 1;
         var gravid = 0;
         var noChao = true;
@@ -88,18 +88,16 @@
         setInterval(" gameLoop() ", 16);
 
         function desenharMapa() {
-            for(let lin = 0 ; lin < tilemap.length ; lin++ ){
-                for(let col = 0 ; col < tilemap[lin].length ; col++ ){
+            for (let lin = 0; lin < tilemap.length; lin++) {
+                for (let col = 0; col < tilemap[lin].length; col++) {
                     let tile = tilemap[lin][col];
                     let x = col * tilesize;
                     let y = area_jogo.height - (tilemap.length - lin) * tilesize;
-                    if(tile === 1){
+                    if (tile === 1) {
                         ctx.drawImage(piso, x, y, tilesize, tilesize);
                     }
-                    if(tile === 2){
-                        
-                    }
                 }
+
             }
         }
 
