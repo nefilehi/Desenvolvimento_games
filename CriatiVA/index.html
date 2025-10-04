@@ -71,7 +71,7 @@
         ];
 
         var veloc = 7;
-        var velocY = 1;
+        var velocY = 50;
         var gravid = 0;
         var noChao = true;
 
@@ -99,6 +99,9 @@
                     if (tile === 1) {
                         ctx.drawImage(piso, x, y, tilesize, tilesize);
                     }
+                    if (tile === 2) {
+                        ctx.drawImage(blc1, x, y, tilesize, tilesize);
+                    }
                 }
 
             }
@@ -117,6 +120,10 @@
             }
             if (keys["KeyD"]) {
                 plrProps.x += veloc
+            }
+            if (keys["Space"] && noChao) {
+                plrProps.y -= velocY
+                noChao = false;
             }
 
         }
