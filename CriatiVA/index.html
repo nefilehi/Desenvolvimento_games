@@ -10,12 +10,11 @@
 
 <body onload="desenhar()">
     <script>
+        let area_jogo = document.getElementById("areaJogo");
+        let ctx = area_jogo.getContext("2d");
 
-        let area_Jogo = document.getElementById("areaJogo");
-        let ctx = area_Jogo.getContext("2d");
-
-        area_Jogo.width = window.innerWidth;
-        area_Jogo.height = window.innerHeight;
+        area_jogo.width = window.innerWidth;
+        area_jogo.height = window.innerHeight;
 
         let player = new Image();
         player.src = "assets/imgs/plyr1.png";
@@ -23,47 +22,57 @@
         let fundo = new Image();
         fundo.src = "assets/imgs/cidade.png";
 
-        let selva = new Image();
-        selva.src = "assets/imgs/selva.png";
+        //let selva = new Image();
+        //selva.src = "assets/imgs/selva.png";
 
         let piso = new Image();
         piso.src = "assets/imgs/piso.png";
 
         let plrProps = {
-            x: area_Jogo.width * 0.10,
-            y: area_Jogo.height * 0.70,
-            larg: area_Jogo.width * 0.10,
-            alt: area_Jogo.height * 0.25
+            x: area_jogo.width * 0.10,
+            y: area_jogo.height * 0.70,
+            larg: area_jogo.width * 0.10,
+            alt: area_jogo.height * 0.25
         };
 
         let pisoProps = {
             x: 0,
-            y: area_Jogo.height * 0.80,
-            larg: area_Jogo.width,
-            alt: area_Jogo.height * 0.20
+            y: area_jogo.height * 0.80,
+            larg: area_jogo.width,
+            alt: area_jogo.height * 0.20
         };
 
-        let selvaProps = {
-            x: 0,
-            y: 0,
-            larg: area_Jogo.width,
-            alt: area_Jogo.height
-        };
+        /*let selvaProps = {
+            x : 0,
+            y : 0,
+            larg : area_jogo.width,
+            alt : area_jogo.height
+        };*/
 
         let fundoProps = {
             x: 0,
             y: 0,
-            larg: area_Jogo.width,
-            alt: area_Jogo.height
+            larg: area_jogo.width,
+            alt: area_jogo.height
         };
 
+        const tilesize = 48;
 
-        var veloc = 1;
+        let tilemap = (
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 2, 0, 0, 2, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+        );
+
+        var veloc = 25;
         var velocY = 1;
-        var gravid = 0.7;
+        var gravid = 0;
         var noChao = true;
 
-        var keys = {}; //Array para guardar as teclas pressionadas
+        var keys = {};
 
         document.addEventListener("keydown", (e) => {
             keys[e.code] = true;
@@ -76,17 +85,30 @@
 
         );
 
-        setInterval("gameLoop()", 16);
+        setInterval(" gameLoop() ", 16);
+
+        function desenharMapa() {
+            for(let lin = 0 ; lin < tilemap.length ; lin++ ){
+                for(let col = 0 ; col < tilemap[lin].length ; col++ ){
+                    let tile = tilemap[lin][col];
+                    let x = col * tilesize;
+                    let y = area_jogo.height - (tilemap.length - lin) * tilesize;
+                    if(tile === 1){
+                        ctx.drawImage(piso, x, y, tilesize, tilesize);
+                    }
+                    if(tile === 2){
+                        
+                    }
+                }
+            }
+        }
 
         function desenhar() {
-            ctx.clearRect(0, 0, area_Jogo.width, area_Jogo.height);
-            ctx.drawImage(fundo, fundoProps.x, fundoProps.y,
-                fundoProps.larg, fundoProps.alt);
-            ctx.drawImage(selva, selvaProps.x, selvaProps.y,
-                selvaProps.larg, selvaProps.alt);
-            ctx.drawImage(piso, pisoProps.x, pisoProps.y, pisoProps.larg, pisoProps.alt);
-            ctx.drawImage(player, plrProps.x, plrProps.y,
-                plrProps.larg, plrProps.alt);
+            ctx.clearRect(0, 0, area_jogo.width, area_jogo.height);
+            ctx.drawImage(fundo, fundoProps.x, fundoProps.y, fundoProps.larg, fundoProps.alt);
+            //ctx.drawImage(selva, selvaProps.x, selvaProps.y, selvaProps.larg, selvaProps.alt);
+            desenharMapa();
+            ctx.drawImage(player, plrProps.x, plrProps.y, plrProps.larg, plrProps.alt);
         }
         function movimento() {
             if (keys["KeyA"]) {
@@ -101,6 +123,7 @@
             desenhar();
             movimento();
         }
+
 
     </script>
 </body>
